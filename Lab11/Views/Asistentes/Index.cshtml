@@ -1,0 +1,33 @@
+@model List<Asistente>
+
+@{
+    ViewData["Title"] = "Asistentes";
+}
+
+<h1>Asistentes</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo asistente</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombres</th>
+            <th>DNI</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var asistente in Model)
+        {
+            <tr>
+                <td>@asistente.Nombres</td>
+                <td>@asistente.Dni</td>
+                <td>@asistente.Correo</td>
+                <td>@asistente.Telefono</td>
+            </tr>
+        }
+    </tbody>
+</table>
