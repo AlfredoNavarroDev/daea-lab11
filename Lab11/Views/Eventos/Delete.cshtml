@@ -4,26 +4,30 @@
     ViewData["Title"] = "Eliminar evento";
 }
 
-<h1>Eliminar evento</h1>
+<div class="page-header">
+    <h1>Eliminar evento</h1>
+</div>
 
-<p>¿Está seguro que desea eliminar el siguiente evento?</p>
+<div class="app-card app-form-card">
+    <p class="text-muted">¿Está seguro que desea eliminar el siguiente evento?</p>
 
-<dl class="row">
-    <dt class="col-sm-3">Título</dt>
-    <dd class="col-sm-9">@Model.Titulo</dd>
+    <dl class="row">
+        <dt class="col-sm-3">Título</dt>
+        <dd class="col-sm-9">@Model.Titulo</dd>
 
-    <dt class="col-sm-3">Fecha</dt>
-    <dd class="col-sm-9">@Model.Fecha.ToString("dd/MM/yyyy")</dd>
+        <dt class="col-sm-3">Fecha</dt>
+        <dd class="col-sm-9">@Model.Fecha.ToString("dd/MM/yyyy")</dd>
 
-    <dt class="col-sm-3">Lugar</dt>
-    <dd class="col-sm-9">@Model.Lugar</dd>
+        <dt class="col-sm-3">Lugar</dt>
+        <dd class="col-sm-9">@Model.Lugar</dd>
 
-    <dt class="col-sm-3">Categoría</dt>
-    <dd class="col-sm-9">@Model.Categoria?.Nombre</dd>
-</dl>
+        <dt class="col-sm-3">Categoría</dt>
+        <dd class="col-sm-9">@Model.Categoria?.Nombre</dd>
+    </dl>
 
-<form asp-action="Delete" method="post">
-    <input type="hidden" asp-for="Id" />
-    <button type="submit" class="btn btn-danger">Eliminar</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-</form>
+    <form asp-action="Delete" method="post" class="d-flex gap-2">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div>

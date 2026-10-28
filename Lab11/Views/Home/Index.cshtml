@@ -1,8 +1,59 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model HomeDashboardViewModel
+
+@{
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-section mb-4">
+    <span class="badge rounded-pill badge-modalidad mb-2">DAEA · TECSUP</span>
+    <h1 class="hero-title">Eventos e Inscripciones</h1>
+    <p class="hero-subtitle">
+        Administra categorías, eventos, asistentes e inscripciones desde un solo lugar:
+        controlá cupos disponibles, modalidad y estado de cada inscripción en tiempo real.
+    </p>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="app-card stat-card">
+            <span class="stat-label">Eventos activos</span>
+            <span class="stat-value">@Model.EventosActivos</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="app-card stat-card">
+            <span class="stat-label">Asistentes activos</span>
+            <span class="stat-value">@Model.AsistentesActivos</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="app-card stat-card">
+            <span class="stat-label">Inscripciones confirmadas</span>
+            <span class="stat-value">@Model.InscripcionesConfirmadas</span>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <a asp-controller="Eventos" asp-action="Index" class="app-card feature-card text-decoration-none">
+            <h2 class="feature-title">Eventos</h2>
+            <p class="feature-text">Creá, editá y filtrá eventos por categoría. Mirá cupos disponibles y modalidad de un vistazo.</p>
+            <span class="feature-link">Ir a Eventos →</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a asp-controller="Asistentes" asp-action="Index" class="app-card feature-card text-decoration-none">
+            <h2 class="feature-title">Asistentes</h2>
+            <p class="feature-text">Registrá asistentes validando que el DNI y el correo no se repitan en el sistema.</p>
+            <span class="feature-link">Ir a Asistentes →</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a asp-controller="Inscripciones" asp-action="Index" class="app-card feature-card text-decoration-none">
+            <h2 class="feature-title">Inscripciones</h2>
+            <p class="feature-text">Inscribí asistentes a eventos respetando el aforo y cancelá inscripciones cuando haga falta.</p>
+            <span class="feature-link">Ir a Inscripciones →</span>
+        </a>
+    </div>
 </div>

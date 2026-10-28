@@ -4,57 +4,67 @@
     ViewData["Title"] = "Eventos";
 }
 
-<h1>Eventos</h1>
+<div class="page-header">
+    <h1>Eventos</h1>
+    <a asp-action="Create" class="btn btn-primary">+ Nuevo evento</a>
+</div>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Nuevo evento</a>
-</p>
+<div class="app-card mb-3">
+    <form asp-action="Index" method="get" class="row row-cols-auto g-2 align-items-end">
+        <div class="col">
+            <label class="form-label mb-1">Categoría</label>
+            <select name="categoriaId" asp-items="ViewBag.Categorias" class="form-select">
+                <option value="">-- Todas las categorías --</option>
+            </select>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-outline-secondary">Filtrar</button>
+        </div>
+    </form>
+</div>
 
-<form asp-action="Index" method="get" class="row g-2 mb-3">
-    <div class="col-auto">
-        <select name="categoriaId" asp-items="ViewBag.Categorias" class="form-select">
-            <option value="">-- Todas las categorías --</option>
-        </select>
+<div class="app-card p-0">
+    <div class="table-responsive">
+        <table class="table app-table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Fecha</th>
+                    <th>Lugar</th>
+                    <th>Modalidad</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Aforo</th>
+                    <th>Inscritos</th>
+                    <th>Cupos</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var evento in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@evento.Titulo</td>
+                        <td>@evento.Fecha.ToString("dd/MM/yyyy")</td>
+                        <td>@evento.Lugar</td>
+                        <td><span class="badge rounded-pill badge-modalidad">@evento.Modalidad</span></td>
+                        <td>@evento.CategoriaNombre</td>
+                        <td>@evento.Precio.ToString("C")</td>
+                        <td>@evento.Aforo</td>
+                        <td>@evento.InscritosConfirmados</td>
+                        <td>
+                            <span class="badge rounded-pill @(evento.CuposDisponibles > 0 ? "badge-cupos-ok" : "badge-cupos-agotado")">
+                                @evento.CuposDisponibles
+                            </span>
+                        </td>
+                        <td class="text-end">
+                            <a asp-action="Details" asp-route-id="@evento.Id" class="btn btn-sm btn-outline-secondary">Ver</a>
+                            <a asp-action="Edit" asp-route-id="@evento.Id" class="btn btn-sm btn-outline-secondary">Editar</a>
+                            <a asp-action="Delete" asp-route-id="@evento.Id" class="btn btn-sm btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-    <div class="col-auto">
-        <button type="submit" class="btn btn-outline-secondary">Filtrar</button>
-    </div>
-</form>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Título</th>
-            <th>Fecha</th>
-            <th>Lugar</th>
-            <th>Modalidad</th>
-            <th>Categoría</th>
-            <th>Precio</th>
-            <th>Aforo</th>
-            <th>Inscritos confirmados</th>
-            <th>Cupos disponibles</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var evento in Model)
-        {
-            <tr>
-                <td>@evento.Titulo</td>
-                <td>@evento.Fecha.ToString("dd/MM/yyyy")</td>
-                <td>@evento.Lugar</td>
-                <td>@evento.Modalidad</td>
-                <td>@evento.CategoriaNombre</td>
-                <td>@evento.Precio.ToString("C")</td>
-                <td>@evento.Aforo</td>
-                <td>@evento.InscritosConfirmados</td>
-                <td>@evento.CuposDisponibles</td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@evento.Id" class="btn btn-sm btn-info">Ver</a>
-                    <a asp-action="Edit" asp-route-id="@evento.Id" class="btn btn-sm btn-warning">Editar</a>
-                    <a asp-action="Delete" asp-route-id="@evento.Id" class="btn btn-sm btn-danger">Eliminar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+</div>

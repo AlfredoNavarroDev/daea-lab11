@@ -4,26 +4,33 @@
     ViewData["Title"] = "Detalle del evento";
 }
 
-<h1>Detalle del evento</h1>
+<div class="page-header">
+    <h1>Detalle del evento</h1>
+</div>
 
-<dl class="row">
-    <dt class="col-sm-3">Título</dt>
-    <dd class="col-sm-9">@Model.Titulo</dd>
+<div class="app-card app-form-card">
+    <dl class="row mb-0">
+        <dt class="col-sm-3">Título</dt>
+        <dd class="col-sm-9">@Model.Titulo</dd>
 
-    <dt class="col-sm-3">Fecha</dt>
-    <dd class="col-sm-9">@Model.Fecha.ToString("dd/MM/yyyy")</dd>
+        <dt class="col-sm-3">Fecha</dt>
+        <dd class="col-sm-9">@Model.Fecha.ToString("dd/MM/yyyy")</dd>
 
-    <dt class="col-sm-3">Lugar</dt>
-    <dd class="col-sm-9">@Model.Lugar</dd>
+        <dt class="col-sm-3">Lugar</dt>
+        <dd class="col-sm-9">@Model.Lugar</dd>
 
-    <dt class="col-sm-3">Categoría</dt>
-    <dd class="col-sm-9">@Model.Categoria?.Nombre</dd>
+        <dt class="col-sm-3">Modalidad</dt>
+        <dd class="col-sm-9"><span class="badge rounded-pill badge-modalidad">@Model.Modalidad</span></dd>
 
-    <dt class="col-sm-3">Aforo</dt>
-    <dd class="col-sm-9">@Model.Aforo</dd>
+        <dt class="col-sm-3">Categoría</dt>
+        <dd class="col-sm-9">@Model.Categoria?.Nombre</dd>
 
-    <dt class="col-sm-3">Precio</dt>
-    <dd class="col-sm-9">@Model.Precio.ToString("C")</dd>
-</dl>
+        <dt class="col-sm-3">Aforo</dt>
+        <dd class="col-sm-9">@Model.Aforo</dd>
 
-<a asp-action="Index" class="btn btn-secondary">Volver</a>
+        <dt class="col-sm-3">Precio</dt>
+        <dd class="col-sm-9">@Model.Precio.ToString("C")</dd>
+    </dl>
+</div>
+
+<a asp-action="Index" class="btn btn-outline-secondary mt-3">Volver</a>

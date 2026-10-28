@@ -63,6 +63,11 @@ public class InscripcionRepositorio
             i.EventoId == eventoId && i.Estado == "Confirmada");
     }
 
+    public async Task<int> ContarConfirmadasAsync()
+    {
+        return await _context.Inscripciones.CountAsync(i => i.Estado == "Confirmada");
+    }
+
     public async Task AgregarAsync(Inscripcion inscripcion)
     {
         _context.Inscripciones.Add(inscripcion);
